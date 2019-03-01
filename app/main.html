@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chirp App</title>
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./stylesheet/style.css">
+    <script src="../vendor/angular/angular.min.js"></script>
+    <script src="./scripts/chirpApp.js"></script>
+</head>
+
+<body ng-app="chirpApp">
+    <div class="container">
+        <div id="main" ng-controller="mainController">
+            <div class="col-md-8 mx-auto">
+                <div class="clearfix">
+                    <form ng-Submit="post()">
+                        <input class="form-control" type="text" placeholder="Your Name" ng-model="newPost.created_by">
+                        <textarea class="form-control" required maxlength="200" rows="3" placeholder="Say Something" ng-model="newPost.text"></textarea>
+                        <input type="submit" value="Chirp!" class="btn submit-btn float-right">
+                    </form>
+                    <div id="post-stream">
+                        <h4>chirp Feed</h4>
+                        <!-- To Be Populated By Angular -->
+                        <div class="post" ng-repeat="post in posts | orderBy: 'created_at':true" ng-class-odd="'odd'"
+                            ng-class-even="'even'">
+                            <p class="lead">{{post.text}}</p>
+                            <small>Posted By @ {{post.created_by}}</small>
+                            <small class="float-right">{{post.created_at | date:"h:mma 'on' d MMM, y" }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/popper/popper.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
